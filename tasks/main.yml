@@ -24,3 +24,8 @@
   command: Rscript -e 'install.packages("git2r", type="source", repos="https://cran.rstudio.com")'
   when: "{{ git2r_ssh | failed }}"
 
+- name: install additional casks
+  homebrew_cask: name={{ item }}
+  with_items:
+  - xquartz
+
