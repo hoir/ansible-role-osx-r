@@ -5,4 +5,5 @@
 # 'rstudio-preview'
 # 'rstudio-daily'
 rstudio_cask_name: rstudio-preview
+ansible_become: no
 
