@@ -1,0 +1,8 @@
+---
+# Which version of rstudio to install
+# Can be one of:
+# 'rstudio'
+# 'rstudio-preview'
+# 'rstudio-daily'
+rstudio_cask_name: rstudio-preview
+

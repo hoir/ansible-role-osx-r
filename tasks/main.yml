@@ -1,0 +1,25 @@
+---
+# tasks file for osx-r
+- name: update homebrew
+  homebrew: update_homebrew=yes
+
+- name: install libssh2
+  homebrew: name=libssh2 state=latest
+
+- name: tap caskroom/versions
+  homebrew_tap: tap=caskroom/versions
+
+- name: install r from cask
+  homebrew_cask: name=r state=present
+
+- name: install rstudio
+  homebrew_cask: name={{ rstudio_cask_name }}
+
+- name: check git2r ssh
+  shell: Rscript -e 'git2r::libgit2_features()$ssh || stop()'
+  register: git2r_ssh
+
+- name: install git2r from source
+  command: Rscript -e 'install.packages("git2r", type="source", repos="https://cran.rstudio.com")'
+  when: "{{ git2r_ssh | failed }}"
+
