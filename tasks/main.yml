@@ -18,6 +18,7 @@
 - name: check git2r ssh
   shell: Rscript -e 'git2r::libgit2_features()$ssh || stop()'
   register: git2r_ssh
+  ignore_errors: yes
 
 - name: install git2r from source
   command: Rscript -e 'install.packages("git2r", type="source", repos="https://cran.rstudio.com")'
