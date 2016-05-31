@@ -1,7 +1,9 @@
 osx-r
 =====
 
-Installer for R and Rstudio on OS X.  Additionally installs `libssh2` and reinstalls `git2` with SSH enabled.
+Installer for R and Rstudio on OS X.  Additionally installs `libssh2` and reinstalls `git2` with SSH enabled. Additionally installs Xquartz to provide an X11 window system.
+
+My require a restart after running to be fully functional.
 
 Requirements
 ------------
