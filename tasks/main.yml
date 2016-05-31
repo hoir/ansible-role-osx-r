@@ -6,6 +6,9 @@
 - name: install libssh2
   homebrew: name=libssh2 state=latest
 
+- name: link libssh2
+  homebrew: name=libssh2 state=linked
+
 - name: tap caskroom/versions
   homebrew_tap: tap=caskroom/versions
 
