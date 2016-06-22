@@ -32,3 +32,26 @@
   with_items:
   - xquartz
 
+- set_fact:
+    ssh_key_path: "{{ ssh_keyfile | default( '~/.ssh/id_rsa' | expanduser ) }}"
+
+- stat: path={{ ssh_key_path }}
+  register: sshkeystat
+
+- name: generate new ssh key
+  command: ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
+  register: newkeycmd
+  when: not sshkeystat.stat.exists
+
+- name: check if ssh key encrypted
+  command: grep ENCRYPTED {{ ssh_key_path }}
+  register: ssh_has_passphrase
+  ignore_errors: yes
+
+- debug: msg="Not running ssh-add; existing key is encrypted."
+  when: "{{ ssh_has_passphrase | succeeded }}"
+
+- name: run ssh-add
+  command: ssh-add {{ ssh_key_path }}
+  when: "{{ ssh_has_passphrase | failed }}"
+
