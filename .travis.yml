@@ -1,10 +1,11 @@
 ---
-language: python
-python: "2.7"
+language: generic
 
 # Use the new container infrastructure
 sudo: false
 
+script: true
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+
